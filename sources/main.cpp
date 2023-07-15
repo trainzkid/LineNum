@@ -31,9 +31,10 @@ int main(int arg_count,char* arg_array[]) {
 			const std::string arg = *i;
 			std::fstream file(arg,std::ios::in);
 
-			if(!file.is_open())
+			if(!file.is_open()) {		// is this even necessary?
 				std::cerr<<"Failed to open "<<arg<<std::endl;
-			else
+				return 1;
+			} else
 				LineNum::linenum(file,std::cout);
 
 		}
