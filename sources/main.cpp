@@ -1,11 +1,11 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <string_view>
 #include <vector>
 #include <istream>
 #include <ostream>
 #include <format>
-#include <sstream>
 
 namespace LineNum {
 	void linenum(std::istream &in,std::ostream &out) {
@@ -14,7 +14,7 @@ namespace LineNum {
 		signed short int NROFF_LINE_LIMIT=66;
 
 		while(std::getline(in,line)) {
-			out<<std::format("{:2}:",lineCount++)<<line<<std::endl;
+			out<<std::format("{:2}:",lineCount++)<<line<<'\n';
 			if(lineCount>NROFF_LINE_LIMIT)
 				lineCount-=NROFF_LINE_LIMIT;
 		}
@@ -32,7 +32,7 @@ int main(int arg_count,char* arg_array[]) {
 			std::fstream file(arg,std::ios::in);
 
 			if(!file.is_open()) {		// is this even necessary?
-				std::cerr<<"Failed to open "<<arg<<std::endl;
+				std::cerr<<"Failed to open "<<arg<<'\n';
 				return 1;
 			} else
 				LineNum::linenum(file,std::cout);
